@@ -1,11 +1,7 @@
-install: make get-deps
-
 ./configure && make && make test
 
-language: python
-
-script: scons
+language: c
 
 compiler:
-	- clang
 	- gcc
+	- clang
