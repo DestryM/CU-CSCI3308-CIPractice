@@ -1,0 +1,11 @@
+install: make get-deps
+
+./configure && make && make test
+
+language: python
+
+script: scons
+
+compiler:
+	- clang
+	- gcc
