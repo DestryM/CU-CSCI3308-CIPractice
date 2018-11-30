@@ -1,3 +1,5 @@
+install: check
+
 language: c
 
 compiler: gcc
