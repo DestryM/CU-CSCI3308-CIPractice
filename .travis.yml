@@ -3,3 +3,5 @@ language: c
 compiler:
 	- gcc
 	- clang
+
+./configure && make && make test
