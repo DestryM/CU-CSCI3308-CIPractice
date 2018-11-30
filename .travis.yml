@@ -3,4 +3,4 @@ language: c
 compiler:
 	- clang
 
-./configure && make && make test
+script: ./configure && make && make test
