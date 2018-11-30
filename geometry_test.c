@@ -91,6 +91,43 @@ START_TEST(test_2d_dist)
 }
 END_TEST
 
+/* coord_2d_area_triangle Test */
+START_TEST(test_2d_area_triangle)
+{
+    coord_2d_t a;
+    coord_2d_t b;
+    coord_2d_t c;
+
+    a.x = a.y = 0.0;
+    b.x = b.y = 0.0;
+    c.x = c.y = 0.0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 0.0);
+
+    a.x = a.y = c.y = 0.0;
+    b.x = b.y = c.x = 1.0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 0.50);
+
+    a.x = a.y = c.y = 5.0;
+    b.x = b.y = c.x = 10.0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 12.50);
+
+    a.x = a.y = 3.0;
+    b.x = 8.0;
+    b.y = 7.0;
+    c.x = 11.0;
+    c.y = 2.0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 18.50);
+
+    a.x = 5.0;
+    a.y = -2.0;
+    b.x = 7.0;
+    b.y = -1.0;
+    c.x = -2.0;
+    c.y = -5.0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 0.50);
+}
+END_TEST
+
 /* coord_2d_midpoint Test */
 START_TEST(test_2d_midpoint)
 {
@@ -159,12 +196,16 @@ Suite* coord_2d_suite(void)
     TCase* tc_2d_dist = tcase_create("coord_2d_dist");
     tcase_add_test(tc_2d_dist, test_2d_dist);
 
+    TCase* tc_2d_area_triangle = tcase_create("coord_2d_area_triangle");
+    tcase_add_test(tc_2d_area_triangle, test_2d_area_triangle);
+
     TCase* tc_2d_midpoint = tcase_create("coord_2d_midpoint");
     tcase_add_test(tc_2d_midpoint, test_2d_midpoint);
 
     /* Add Cases to Suite */
     suite_add_tcase(s, tc_2d_eq);
     suite_add_tcase(s, tc_2d_dist);
+    suite_add_tcase(s, tc_2d_area_triangle);
     suite_add_tcase(s, tc_2d_midpoint);
 
     /* Return Suite */
